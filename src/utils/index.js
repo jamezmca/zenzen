@@ -85,10 +85,7 @@ export function countStreakUpToYesterday(data) {
         const dateStr = `${year}-${month}-${day}`
 
         const habits = data[dateStr]
-        if (!habits) break
-
-        const allComplete = Object.values(habits).every(v => v === true)
-        if (!allComplete) break
+        if (!habits) { break }
 
         streak += 1
         current = new Date(current.getTime() - oneDayMs)
