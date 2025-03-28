@@ -8,6 +8,16 @@
   /* gap: 1rem; */
 }
 
+header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+header img {
+  max-width: 40px;
+}
+
 header,
 main,
 footer {

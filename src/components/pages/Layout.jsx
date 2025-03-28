@@ -6,6 +6,7 @@ export default function Layout(props) {
     const header = (
         <header className=''>
             {/* <i className="fa-solid fa-kiwi-bird"></i> */}
+            <img src='favicon.webp' alt='flower' />
             <h1 className='text-gradient'>Zenzen</h1>
         </header>
     )
