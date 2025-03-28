@@ -12,10 +12,10 @@ export default function Layout(props) {
     const footer = (
         <footer>
             <small>Created by</small>
-            <a target='_blank' href='https://www.linkedin.com/in/jamezmcarthur/'>
-                <img src='https://media.licdn.com/dms/image/v2/C5603AQG6Q4W3kWANtw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1630988413596?e=1747872000&v=beta&t=07eM4oD3FQOgoGqbRiV15zqzeZSmCZkUVW3cXctLNic' alt='pfp' />
-                <p>@jamezmcarthur</p>
-                <i className="fa-brands fa-linkedin-in"></i>
+            <a target='_blank' href='https://github.com/jamezmca/zenzen'>
+                <img src='https://avatars.githubusercontent.com/u/77163783?v=4' alt='pfp' />
+                <p>jamezmca</p>
+                <i className="fa-brands fa-github"></i>
             </a>
         </footer>
     )
