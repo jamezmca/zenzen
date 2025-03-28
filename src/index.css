@@ -296,6 +296,10 @@ section {
   justify-content: space-between;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 .isToday {
   border: 1px solid var(--border-secondary);
 }
@@ -405,6 +409,42 @@ section {
 }
 
 
+/* HISTORY */
+
+.history-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border: 1px solid var(--border-primary);
+  padding: 1rem;
+  border-radius: var(--border-radius-small);
+}
+
+.history-container>div:first-of-type {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.history-container>div:first-of-type div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.history-container>div:last-of-type {
+  overflow: hidden;
+  border-radius: var(--border-radius-small);
+}
+
+.history-container>div:last-of-type div {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
 
 
 /* PORTAL */

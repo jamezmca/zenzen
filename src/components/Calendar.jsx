@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import MiniProgressBar from './MiniProgressBar'
 import { getCompletedData, getCurrentDateString } from '../utils'
+import Portal from './Portal'
+import History from './History'
 
 const months = { 'January': 'Jan', 'February': 'Feb', 'March': 'Mar', 'April': 'Apr', 'May': 'May', 'June': 'Jun', 'July': 'Jul', 'August': 'Aug', 'September': 'Sept', 'October': 'Oct', 'November': 'Nov', 'December': 'Dec' }
 const monthsArr = Object.keys(months)
@@ -13,6 +15,8 @@ export default function Calendar(props) {
     const currMonth = now.getMonth()
     const [selectedMonth, setSelectMonth] = useState(Object.keys(months)[currMonth])
     const [selectedYear, setSelectedYear] = useState(now.getFullYear())
+    const [selectedDate, setSelectedDate] = useState(null)
+    const toggleModal = (d) => { setSelectedDate(curr => curr ? null : d) }
 
     const numericMonth = monthsArr.indexOf(selectedMonth)
 
@@ -45,6 +49,11 @@ export default function Calendar(props) {
 
     return (
         <div id='calendar' className=''>
+            {selectedDate && (
+                <Portal handleCloseModal={toggleModal}>
+                    <History handleCloseModal={toggleModal} selectedDate={selectedDate} data={data} />
+                </Portal>
+            )}
             <div className=''>
                 <button onClick={() => {
                     handleIncrementMonth(-1)
@@ -80,7 +89,10 @@ export default function Calendar(props) {
                                 let p = Object.keys(getCompletedData(daysData)).length * 100 / Object.keys(daysData).length
 
                                 return (
-                                    <div className={' regular' + (isToday ? ' isToday' : ' ')} key={dayOfWeekIndex}>
+                                    <div onClick={() => {
+                                        if (!daysData) { return }
+                                        setSelectedDate(formattedString)
+                                    }} className={'regular ' + (isToday ? ' isToday' : ' ') + (data?.[formattedString] ? ' pointer' : ' ')} key={dayOfWeekIndex}>
                                         <p>{dayIndex}</p>
                                         {formattedString in data && (
                                             <MiniProgressBar percentage={p} />

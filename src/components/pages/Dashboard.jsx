@@ -9,7 +9,6 @@ import Countdown from '../Countdown'
 import DashedLine from '../DashedLine'
 
 export default function Dashboard(props) {
-    const showModal = false
 
     // stats (name, timer, streak & start_btn, levelbar * success_rate )
     // calendar showing vertical percentage bars for each day depending on how many items met
@@ -18,11 +17,6 @@ export default function Dashboard(props) {
     // history portal - click on a calendar day to see what you did and did not, also show days where streak ended
     return (
         <section id='dashboard'>
-            {showModal && (
-                <Portal>
-                    <History {...props} />
-                </Portal>
-            )}
             <Stats {...props} />
             <DashedLine title={'Habits'} />
             {/* <Countdown {...props} /> */}
