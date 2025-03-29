@@ -163,11 +163,22 @@ section {
   /* background: white !important; */
 }
 
+.edit-name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.edit-name div {
+  width: fit-content;
+}
+
 .double-col {
   grid-column: span 2 / span 2;
 }
 
-.stats-card button {
+.stats-card>button {
   /* grid-column: span 2 / span 2; */
   width: 100%;
 }
