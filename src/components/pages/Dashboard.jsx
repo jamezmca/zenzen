@@ -1,11 +1,7 @@
 import React from 'react'
 import Stats from '../Stats'
-import Portal from '../Portal'
-import History from '../History'
-import UI from '../UI'
 import Calendar from '../Calendar'
 import Habits from '../Habits'
-import Countdown from '../Countdown'
 import DashedLine from '../DashedLine'
 
 export default function Dashboard(props) {
@@ -15,9 +11,15 @@ export default function Dashboard(props) {
     // habits config (configure the tracked habits, save object for each day)
 
     // history portal - click on a calendar day to see what you did and did not, also show days where streak ended
+    const { handleChangePage, currTodo } = props
     return (
         <section id='dashboard'>
             <Stats {...props} />
+            <DashedLine title={'To Do'} />
+            <button onClick={() => { handleChangePage(3) }} className='textarea-button'>
+                {/* onclick show todo */}
+                {currTodo}
+            </button>
             <DashedLine title={'Habits'} />
             {/* <Countdown {...props} /> */}
             <Habits {...props} />

@@ -5,6 +5,7 @@ import Tracker from "./components/Tracker"
 import Dashboard from "./components/pages/Dashboard"
 import Challenge from "./components/pages/Challenge"
 import { getCurrentDateString } from "./utils"
+import Todo from "./components/pages/Todo"
 
 function App() {
   const [name, setName] = useState('')
@@ -14,6 +15,7 @@ function App() {
   const [data, setData] = useState({})
   const [datetime, setDatetime] = useState(null)
   const [history, setHistory] = useState([])
+  const [todos, setTodos] = useState({})
 
   const currDateString = getCurrentDateString()
 
@@ -24,6 +26,38 @@ function App() {
   function handleCreateAccount() {
     if (!name) { return }
     localStorage.setItem('name', name)
+    handleChangePage(1)
+  }
+
+  function handleModTodos(val) {
+    setTodos(curr => {
+      let newTodos = { ...curr }
+      newTodos[currDateString] = val
+      return newTodos
+    })
+  }
+
+  function isPrevTodos() {
+    const dates = Object.keys(todos)
+    if (dates.length == 0) { return false }
+    const sortedDesc = dates.sort((a, b) => new Date(b) - new Date(a))
+    const recentDate = sortedDesc[0]
+    return recentDate
+  }
+
+  function handleFindPrevTodos() {
+    const recentDate = isPrevTodos()
+    if (!recentDate) { return }
+    setTodos(curr => {
+      return ({
+        ...curr,
+        [currDateString]: curr[recentDate]
+      })
+    })
+  }
+
+  function handleSaveTodos() {
+    localStorage.setItem('todos', JSON.stringify(todos))
     handleChangePage(1)
   }
 
@@ -79,11 +113,20 @@ function App() {
     let n = ''
     let t = {}
     let h = []
+    let d = {}
 
     setName(curr => {
       if (localStorage.getItem('name')) {
         n = localStorage.getItem('name')
         setSelectedDisplay(1)
+        return n
+      }
+      return curr
+    })
+
+    setTodos(curr => {
+      if (localStorage.getItem('todos')) {
+        n = JSON.parse(localStorage.getItem('todos'))
         return n
       }
       return curr
@@ -119,8 +162,11 @@ function App() {
 
   const displays = {
     0: <Hero handleCreateAccount={handleCreateAccount} name={name} setName={setName} />,
-    1: <Dashboard currDateString={currDateString} handleAddHabit={handleAddHabit} handleDeleteHabit={handleDeleteHabit} data={data} habits={habits} name={name} day={day} handleChangePage={handleChangePage} />,
-    2: <Challenge handleChangePage={handleChangePage} currDateString={currDateString} data={data} handleModForm={handleModForm} habits={habits} />
+    1: <Dashboard currTodo={todos?.[currDateString] || 'You have no active todos... Click me to add some!'} currDateString={currDateString} handleAddHabit={handleAddHabit} handleDeleteHabit={handleDeleteHabit} data={data} habits={habits} name={name} day={day} handleChangePage={handleChangePage} />,
+    2: <Challenge handleChangePage={handleChangePage} currDateString={currDateString} data={data} handleModForm={handleModForm} habits={habits} />,
+    3: <Todo todos={todos} currDateString={currDateString} handleChangePage={handleChangePage} handleModTodos={handleModTodos}
+      handleFindPrevTodos={handleFindPrevTodos}
+      handleSaveTodos={handleSaveTodos} isPrevTodos={isPrevTodos} />
   }
 
   return (

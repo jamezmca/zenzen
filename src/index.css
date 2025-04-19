@@ -211,6 +211,56 @@ section {
   background: white !important;
 }
 
+/* todo */
+
+#todos {
+  flex: 1;
+}
+
+#todos textarea {
+  background: var(--background-primary);
+  border: none;
+  padding: 0;
+  height: 100%;
+  resize: none;
+  flex: 1;
+}
+
+.todo-btns {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.todo-btns button {
+  flex: 1;
+}
+
+.todo-btns i {
+  padding-left: 0.5rem;
+}
+
+.textarea-button {
+  background-color: var(--background-secondary);
+  border: 1px solid var(--border-secondary);
+  color: var(--color-primary);
+  border-radius: var(--border-radius-small);
+  width: 100%;
+  box-shadow: none;
+  text-align: left;
+  height: 100px;
+  padding: 0.5rem 0.75rem !important;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.textarea-button:hover {
+  box-shadow: none;
+  transform: none;
+}
+
 /* HABITS  */
 
 #habits {
@@ -551,6 +601,10 @@ footer a img {
 
   .today-container {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .todo-btns button {
+    flex: unset;
   }
 
 }
