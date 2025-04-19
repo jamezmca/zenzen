@@ -18,7 +18,11 @@ export default function Dashboard(props) {
             <DashedLine title={'To Do'} />
             <button onClick={() => { handleChangePage(3) }} className='textarea-button'>
                 {/* onclick show todo */}
-                {currTodo}
+                {currTodo.split('\n').map((text, idx) => {
+                    return (
+                        <p key={idx}>{text}</p>
+                    )
+                })}
             </button>
             <DashedLine title={'Habits'} />
             {/* <Countdown {...props} /> */}
