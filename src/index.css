@@ -218,9 +218,9 @@ section {
 }
 
 #todos textarea {
-  background: var(--background-primary);
+  /* background: var(--background-primary);
   border: none;
-  padding: 0;
+  padding: 0; */
   height: 100%;
   resize: none;
   flex: 1;
@@ -250,9 +250,8 @@ section {
   text-align: left;
   height: 100px;
   padding: 0.5rem 0.75rem !important;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
 }
 
