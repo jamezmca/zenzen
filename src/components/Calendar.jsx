@@ -49,6 +49,8 @@ export default function Calendar(props) {
 
     return (
         <div id='calendar' className=''>
+            {/* the portal is rendered here, because the logic for its conditional rendering is relevant to this calendar (ie they click a day in the calendar and then the portal shows the history for that day) */}
+            {/* the state to manage whether or not the history portal is displayed, is either null when no day is selected, or it's equal to the day when a day is selected so that within the modal we may look up the history for that day */}
             {selectedDate && (
                 <Portal handleCloseModal={toggleModal}>
                     <History handleCloseModal={toggleModal} selectedDate={selectedDate} data={data} />
