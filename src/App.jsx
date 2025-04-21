@@ -38,6 +38,7 @@ function App() {
   }
 
   function isPrevTodos() {
+    // this function checks the history and finds the most recent day with a todo/
     const dates = Object.keys(todos)
     if (dates.length == 0) { return false }
     const sortedDesc = dates.sort((a, b) => new Date(b) - new Date(a))
