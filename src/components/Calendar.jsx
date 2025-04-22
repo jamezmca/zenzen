@@ -39,7 +39,7 @@ export default function Calendar(props) {
     const monthNow = new Date(selectedYear, Object.keys(months).indexOf(selectedMonth), 1)
 
     const firstDayOfMonth = monthNow.getDay()
-    const daysInMonth = new Date(selectedYear, Object.keys(selectedMonth).indexOf(selectedMonth) + 1, 0).getDate()
+    const daysInMonth = new Date(selectedYear, Object.keys(months).indexOf(selectedMonth) + 1, 0).getDate()
 
     const daysToDisplay = firstDayOfMonth + daysInMonth
 
